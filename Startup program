@@ -1,0 +1,15 @@
+# -NET
+Jednostavno je ključ problema
+Public Class Form1
+Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+Dim kljuc As Microsoft.Win32.RegistryKey 'deklarira se ključ
+Dim ime As String = "Postavljeno" 'zapisujemo ime ključa te ga spremamo u string
+Dim putanja As String = "C:\Documents and Settings\AllUsers\Documents\testni_program.exe" 'radi se putanja, ovo možete staviti po svom izbor
+'zapisuje se ključ u registriju
+kljuc = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Run", True)
+If kljuc.GetValue(ime) = Nothing Then
+'ako se ključ ne zapiše, ponavljamo postupak 
+kljuc.SetValue(ime, putanja, Microsoft.Win32.RegistryValueKind.String)
+End If
+End Sub
+End Class
